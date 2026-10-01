@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Armchair, Banknote, Film, Pencil, Plus, Ticket } from "lucide-react";
+import { Armchair, Banknote, Pencil, Plus, Ticket } from "lucide-react";
 import { useState } from "react";
 import { Badge, PageTitle, StatCard } from "@/components/cinema";
 import { Button } from "@/components/ui/button";
