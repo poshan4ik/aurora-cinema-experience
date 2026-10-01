@@ -13,7 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as CashierRouteImport } from './routes/cashier'
 import { Route as ControllerRouteImport } from './routes/controller'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as MovieSlugRouteImport } from './routes/movie.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -36,9 +39,24 @@ const ControllerRoute = ControllerRouteImport.update({
   path: '/controller',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManagerRoute = ManagerRouteImport.update({
+  id: '/manager',
+  path: '/manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MovieSlugRoute = MovieSlugRouteImport.update({
@@ -52,7 +70,10 @@ export interface FileRoutesByFullPath {
   '/booking': typeof BookingRoute
   '/cashier': typeof CashierRoute
   '/controller': typeof ControllerRoute
+  '/login': typeof LoginRoute
+  '/manager': typeof ManagerRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +81,10 @@ export interface FileRoutesByTo {
   '/booking': typeof BookingRoute
   '/cashier': typeof CashierRoute
   '/controller': typeof ControllerRoute
+  '/login': typeof LoginRoute
+  '/manager': typeof ManagerRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRoutesById {
@@ -69,23 +93,45 @@ export interface FileRoutesById {
   '/booking': typeof BookingRoute
   '/cashier': typeof CashierRoute
   '/controller': typeof ControllerRoute
+  '/login': typeof LoginRoute
+  '/manager': typeof ManagerRoute
   '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/booking' | '/cashier' | '/controller' | '/profile' | '/movie/$slug'
+    | '/'
+    | '/booking'
+    | '/cashier'
+    | '/controller'
+    | '/login'
+    | '/manager'
+    | '/profile'
+    | '/register'
+    | '/movie/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/booking' | '/cashier' | '/controller' | '/profile' | '/movie/$slug'
+    | '/'
+    | '/booking'
+    | '/cashier'
+    | '/controller'
+    | '/login'
+    | '/manager'
+    | '/profile'
+    | '/register'
+    | '/movie/$slug'
   id:
     | '__root__'
     | '/'
     | '/booking'
     | '/cashier'
     | '/controller'
+    | '/login'
+    | '/manager'
     | '/profile'
+    | '/register'
     | '/movie/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -94,7 +140,10 @@ export interface RootRouteChildren {
   BookingRoute: typeof BookingRoute
   CashierRoute: typeof CashierRoute
   ControllerRoute: typeof ControllerRoute
+  LoginRoute: typeof LoginRoute
+  ManagerRoute: typeof ManagerRoute
   ProfileRoute: typeof ProfileRoute
+  RegisterRoute: typeof RegisterRoute
   MovieSlugRoute: typeof MovieSlugRoute
 }
 
@@ -128,11 +177,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ControllerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manager': {
+      id: '/manager'
+      path: '/manager'
+      fullPath: '/manager'
+      preLoaderRoute: typeof ManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/movie/$slug': {
@@ -150,7 +220,10 @@ const rootRouteChildren: RootRouteChildren = {
   BookingRoute: BookingRoute,
   CashierRoute: CashierRoute,
   ControllerRoute: ControllerRoute,
+  LoginRoute: LoginRoute,
+  ManagerRoute: ManagerRoute,
   ProfileRoute: ProfileRoute,
+  RegisterRoute: RegisterRoute,
   MovieSlugRoute: MovieSlugRoute,
 }
 export const routeTree = rootRouteImport
