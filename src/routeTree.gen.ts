@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BookingRouteImport } from './routes/booking'
+import { Route as CashierRouteImport } from './routes/cashier'
+import { Route as ControllerRouteImport } from './routes/controller'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as MovieSlugRouteImport } from './routes/movie.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +26,21 @@ const BookingRoute = BookingRouteImport.update({
   path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CashierRoute = CashierRouteImport.update({
+  id: '/cashier',
+  path: '/cashier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControllerRoute = ControllerRouteImport.update({
+  id: '/controller',
+  path: '/controller',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MovieSlugRoute = MovieSlugRouteImport.update({
   id: '/movie/$slug',
   path: '/movie/$slug',
@@ -32,30 +50,51 @@ const MovieSlugRoute = MovieSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/booking': typeof BookingRoute
+  '/cashier': typeof CashierRoute
+  '/controller': typeof ControllerRoute
+  '/profile': typeof ProfileRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/booking': typeof BookingRoute
+  '/cashier': typeof CashierRoute
+  '/controller': typeof ControllerRoute
+  '/profile': typeof ProfileRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/booking': typeof BookingRoute
+  '/cashier': typeof CashierRoute
+  '/controller': typeof ControllerRoute
+  '/profile': typeof ProfileRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/booking' | '/movie/$slug'
+  fullPaths:
+    '/' | '/booking' | '/cashier' | '/controller' | '/profile' | '/movie/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/booking' | '/movie/$slug'
-  id: '__root__' | '/' | '/booking' | '/movie/$slug'
+  to:
+    '/' | '/booking' | '/cashier' | '/controller' | '/profile' | '/movie/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/booking'
+    | '/cashier'
+    | '/controller'
+    | '/profile'
+    | '/movie/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BookingRoute: typeof BookingRoute
+  CashierRoute: typeof CashierRoute
+  ControllerRoute: typeof ControllerRoute
+  ProfileRoute: typeof ProfileRoute
   MovieSlugRoute: typeof MovieSlugRoute
 }
 
@@ -75,6 +114,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cashier': {
+      id: '/cashier'
+      path: '/cashier'
+      fullPath: '/cashier'
+      preLoaderRoute: typeof CashierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/controller': {
+      id: '/controller'
+      path: '/controller'
+      fullPath: '/controller'
+      preLoaderRoute: typeof ControllerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/movie/$slug': {
       id: '/movie/$slug'
       path: '/movie/$slug'
@@ -88,6 +148,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BookingRoute: BookingRoute,
+  CashierRoute: CashierRoute,
+  ControllerRoute: ControllerRoute,
+  ProfileRoute: ProfileRoute,
   MovieSlugRoute: MovieSlugRoute,
 }
 export const routeTree = rootRouteImport
